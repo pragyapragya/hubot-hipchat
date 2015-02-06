@@ -10,9 +10,10 @@ RUN hubot --create /opt/hubot
 WORKDIR /opt/hubot
 RUN npm install
 RUN npm install --save hubot-hipchat
+ADD add-hubot-scripts.sh /tmp/
 
 env   HUBOT_HIPCHAT_JID [asdfID]@chat.hipchat.com
 env   HUBOT_HIPCHAT_PASSWORD [your-password]
 env   HUBOT_AUTH_ADMIN [your name]
 
-CMD redis-server /etc/redis/redis.conf && bin/hubot --adapter hipchat
+CMD redis-server /etc/redis/redis.conf && /tmp/add-hubot-scripts.sh && bin/hubot --adapter hipchat
