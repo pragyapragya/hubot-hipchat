@@ -5,8 +5,9 @@ MAINTAINER Tim Hartmann <tfhartmann@gmail.com>
 RUN apt-get update
 RUN apt-get -y install wget python-dev g++ make libicu-dev redis-server python-pip
 
-RUN npm install --global coffee-script hubot
-RUN hubot --create /opt/hubot
+RUN npm install --global coffee-script yo generator-hubot hubot
+RUN mkdir -p /opt/hubot; cd /opt/hubot; yo hubot
+#RUN hubot --create /opt/hubot
 WORKDIR /opt/hubot
 RUN npm install
 RUN npm install --save git+https://github.com/hipchat/hubot-hipchat.git
